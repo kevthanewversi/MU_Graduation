@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MU_Graduation</string>
+
+    <string-array name= "section_titles">
+        <item>Home</item>
+        <item>Map</item>
+        <item>Twitter Feed</item>
+        <item>Search</item>
+        <item>Rate App</item>
+        <item>Share App</item>
+        <item>Help</item>
+        <item>About</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example"></string>
+
+    <string-array name="section_icons">
+        <item>@drawable/ic_home_name</item>
+        <item>@drawable/ic_location_name</item>
+        <item>@drawable/ic_location_name</item>
+        <item>@drawable/ic_search_name</item>
+        <item>@drawable/ic_star_name</item>
+        <item>@drawable/ic_share_name</item>
+        <item>@drawable/ic_help_name</item>
+        <item>@drawable/ic_info_name</item></string-array>
+
+    <string name="action_settings">Settings</string>
+</resources>
