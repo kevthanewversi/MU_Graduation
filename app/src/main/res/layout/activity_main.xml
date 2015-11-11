@@ -4,6 +4,14 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffe6e1d4"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
     <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
