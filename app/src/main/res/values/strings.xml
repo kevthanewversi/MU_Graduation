@@ -28,4 +28,8 @@
         <item>@drawable/ic_info_name</item></string-array>
 
     <string name="action_settings">Settings</string>
+    <string name="schedule">Schedule</string>
+    <string name="schools">Schools</string>
+    <string name="awards">Awards</string>
+    <string name="speakers">Speakers</string>
 </resources>
