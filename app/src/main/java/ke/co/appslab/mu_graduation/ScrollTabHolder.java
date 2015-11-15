@@ -8,5 +8,5 @@ import android.widget.AbsListView;
 public interface ScrollTabHolder {
     public abstract void adjustScroll(int i);
 
-    public abstract void onScroll(AbsListView abslistview, int a, int b, int c, int d);
+    public abstract void onScroll(AbsListView abslistview, int firstvisibleItem, int visibleItemcount, int totalItemcount, int pagePosition);
 }

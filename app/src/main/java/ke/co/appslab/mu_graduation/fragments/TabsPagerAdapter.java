@@ -3,6 +3,7 @@ package ke.co.appslab.mu_graduation.fragments;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
@@ -33,7 +34,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         ScrollTabHolderFragment scrollTabHolderfragment = null;
         switch(index){
             case 0:
-                scrollTabHolderfragment = (ScrollTabHolderFragment)ScheduleFragment.newInstance(index);
+                scrollTabHolderfragment = ScheduleFragment.newInstance(index);
                 break;
             case 1:
                 scrollTabHolderfragment = (ScrollTabHolderFragment)SpeakersFragment.newInstance(index);
