@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import ke.co.appslab.mu_graduation.R;
 
-import ke.co.appslab.mu_graduation.ScrollTabHolder;
 import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
 import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
 
@@ -27,13 +26,7 @@ import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ScheduleFragment extends ScrollTabHolderFragment implements AbsListView.OnScrollListener,AbsListView.OnItemClickListener {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_POSITION = "position";
-    private int mPosition;
-
+public class SpeakersFragment extends ScrollTabHolderFragment implements AbsListView.OnScrollListener,AbsListView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,20 +41,19 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
      */
     private ListAdapter mAdapter;
 
-    // TODO: Rename and change types of parameters
     public static Fragment newInstance(int i) {
-        ScheduleFragment scheduleFragment = new ScheduleFragment();
+        SpeakersFragment speakersFragment = new SpeakersFragment();
         Bundle args = new Bundle();
         args.putInt("position",i);
-        scheduleFragment.setArguments(args);
-        return scheduleFragment;
+        speakersFragment.setArguments(args);
+        return speakersFragment;
     }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ScheduleFragment() {
+    public SpeakersFragment() {
     }
 
     @Override
@@ -77,7 +69,7 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_speakers, container, false);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -130,20 +122,17 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
     }
 
     @Override
-    public void adjustScroll(int i) {
-
-    }
-
-    @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
 
     }
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        if(mScrollTabHolder != null){
-            mScrollTabHolder.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount,mPosition);
-        }
+
+    }
+
+    @Override
+    public void adjustScroll(int i) {
 
     }
 
