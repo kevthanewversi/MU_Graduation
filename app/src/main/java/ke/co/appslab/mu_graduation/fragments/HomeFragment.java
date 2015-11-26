@@ -54,21 +54,20 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
             if (index == 1) {
                 scrolltabholderfragment = (ScrollTabHolderFragment) SpeakersFragment.newInstance(index);
             }
-//        if (index == 2)
-//        {
-//            scrolltabholderfragment = (ScrollTabHolderFragment)SchoolsFragment.newInstance(index);
-//        }
-//        if (index == 3)
-//        {
-//            scrolltabholderfragment = (ScrollTabHolderFragment)AwardsFragment.newInstance(index);
-//        }
+            if (index == 2) {
+                scrolltabholderfragment = (ScrollTabHolderFragment) SchoolsFragment.newInstance(index);
+            }
+            if (index == 3) {
+                scrolltabholderfragment = (ScrollTabHolderFragment) AwardsFragment.newInstance(index);
+
+            }
+            
             mscrollTabHolders.put(index, scrolltabholderfragment);
             if (mListener != null) {
                 scrolltabholderfragment.setScrollTabHolder(mListener);
             }
             return scrolltabholderfragment;
         }
-
         @Override
         public int getCount() {
             return TITLES.length;
@@ -111,17 +110,7 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
         tabsStrip.setViewPager(viewPager);
         return view;
     }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
 
-//        ViewPager viewPager = (ViewPager)view.findViewById(R.id.viewpager);
-//        viewPager.setAdapter(new TabsPagerAdapter(getFragmentManager()));
-//
-//        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip)view.findViewById(R.id.tabs);
-//        tabsStrip.setViewPager(viewPager);
-
-    }
 
     public static Fragment newInstance(int i) {
         HomeFragment tabbedFragment = new HomeFragment();
