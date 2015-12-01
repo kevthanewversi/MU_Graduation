@@ -19,7 +19,7 @@
 
     <string-array name="section_icons">
         <item>@drawable/ic_home_name</item>
-        <item>@drawable/ic_location_name</item>
+        <item>@drawable/ic_location_name</item> <!-- TODO: change this icon to  twitter one -->
         <item>@drawable/ic_location_name</item>
         <item>@drawable/ic_search_name</item>
         <item>@drawable/ic_star_name</item>
@@ -33,6 +33,4 @@
     <string name="awards">Awards</string>
     <string name="speakers">Speakers</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

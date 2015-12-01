@@ -16,16 +16,18 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import ke.co.appslab.mu_graduation.fragments.AwardsFragment;
 import ke.co.appslab.mu_graduation.fragments.HomeFragment;
 import ke.co.appslab.mu_graduation.fragments.NavigationDrawerFragment;
 
 import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.fragments.ScheduleFragment;
+import ke.co.appslab.mu_graduation.fragments.SchoolsFragment;
 import ke.co.appslab.mu_graduation.fragments.SpeakersFragment;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener,SchoolsFragment.OnFragmentInteractionListener,AwardsFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

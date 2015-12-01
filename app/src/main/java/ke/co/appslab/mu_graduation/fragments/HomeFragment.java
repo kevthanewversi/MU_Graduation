@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
                 scrolltabholderfragment = (ScrollTabHolderFragment) AwardsFragment.newInstance(index);
 
             }
-            
+
             mscrollTabHolders.put(index, scrolltabholderfragment);
             if (mListener != null) {
                 scrolltabholderfragment.setScrollTabHolder(mListener);
