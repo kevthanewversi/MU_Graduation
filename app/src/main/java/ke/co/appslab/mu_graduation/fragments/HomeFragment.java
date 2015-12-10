@@ -2,8 +2,10 @@ package ke.co.appslab.mu_graduation.fragments;
 
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,12 +13,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.flaviofaria.kenburnsview.KenBurnsView;
+
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.os.Handler;
 
 import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.ScrollTabHolder;
@@ -26,11 +35,11 @@ import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
  * Created by root on 11/13/15.
  */
 public class HomeFragment extends Fragment implements ScrollTabHolder, android.support.v4.view.ViewPager.OnPageChangeListener {
-
+    public Context ctxt;
 
 
     public class TabsPagerAdapter extends FragmentPagerAdapter {
-        Context ctxt;
+
         private  String TITLES[] = (new String[]{"schedule", "speakers", "schools", "awards"/*ctxt.getResources().getString(R.string.schedule),ctxt.getResources().getString(R.string.speakers),
              ctxt.getResources().getString(R.string.schools),ctxt.getResources().getString(R.string.awards)*/});
         private ScrollTabHolder mListener;
@@ -87,6 +96,14 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     //end of TabsPagerAdapter
     }
 
+//continuing of HomeFragment
+    Timer timer;
+    KenBurnsView slideimage;
+    Drawable photos [] ;
+    Activity activity;
+    Boolean isRun = false;
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -110,6 +127,41 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
         tabsStrip.setViewPager(viewPager);
         return view;
     }
+    public void  OnViewCreated(final View handler, Bundle bundle){
+     super.onViewCreated(handler, bundle);
+     slideimage = (KenBurnsView)getActivity().findViewById(R.id.kbview);
+     int interval = 1000;
+     activity = getActivity();
+        if (activity != null & isAdded()){
+         photos = (new Drawable [] {(getResources().getDrawable(R.drawable.moi_uni)),(getResources().getDrawable(R.drawable.moi_uni2)),(getResources().getDrawable(R.drawable.moi_uni3))});
+        }
+
+        Handler handler1 = new Handler();
+         final String TAG = "hello";
+
+
+           //method that will be used to change the slideshow image
+         Runnable changeImage = new Runnable() {
+
+             @Override
+             public void run (){
+                 try{
+                     isRun = true;
+              int i = (new Random()).nextInt(photos.length);
+              slideimage.setImageResource(R.drawable.moi_uni3);
+              Log.d(TAG, "Each minute task executing");}
+
+                 catch(Exception e){
+                     isRun = false;
+                 }
+             }
+         };
+        handler1.postDelayed(changeImage,interval);
+         if(isRun == true){
+          System.out.println("wizkhal");
+         }
+
+         }
 
 
     public static Fragment newInstance(int i) {
