@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
                     handler.postDelayed(this, 1000);
                 }
                 catch (Exception e) {
-                    Log.e("Myine","didint work");
+                    Log.e("Mine","Didn't work");
                 }
                 finally{
                     //also call the same runnable
