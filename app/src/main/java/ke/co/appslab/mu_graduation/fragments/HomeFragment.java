@@ -4,11 +4,9 @@ package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
@@ -25,6 +23,7 @@ import com.flaviofaria.kenburnsview.KenBurnsView;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.os.Handler;
 
 import ke.co.appslab.mu_graduation.R;
@@ -38,12 +37,14 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     public Context ctxt;
 
 
+
     public class TabsPagerAdapter extends FragmentPagerAdapter {
 
         private  String TITLES[] = (new String[]{"schedule", "speakers", "schools", "awards"/*ctxt.getResources().getString(R.string.schedule),ctxt.getResources().getString(R.string.speakers),
              ctxt.getResources().getString(R.string.schools),ctxt.getResources().getString(R.string.awards)*/});
         private ScrollTabHolder mListener;
         private SparseArrayCompat mscrollTabHolders;
+
 
 
         public TabsPagerAdapter(FragmentManager fm) {
@@ -97,20 +98,48 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     }
 
 //continuing of HomeFragment
-    Timer timer;
     KenBurnsView slideimage;
-    Drawable photos [] ;
     Activity activity;
-    Boolean isRun = false;
+    int  photos [];
+    Handler handler;
+
 
 
     public HomeFragment() {
         // Required empty public constructor
+
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        activity = getActivity();
+        if(activity != null & isAdded()){
+             photos = new int[] {R.drawable.moi_uni,R.drawable.moi_uni2};
+        }
+        handler = new Handler();
+        Runnable changeimage = new Runnable() {
+
+            @Override
+            public void run() {
+                try{
+                    //do your code here
+                    int i = (new Random()).nextInt(photos.length);
+                    slideimage.setImageResource(photos[i]);
+                    //also call the same runnable
+                    handler.postDelayed(this, 1000);
+                }
+                catch (Exception e) {
+                    Log.e("Myine","didint work");
+                }
+                finally{
+                    //also call the same runnable
+                    handler.postDelayed(this, 1000);
+                }
+            }
+        };
+        handler.postDelayed(changeimage, 1000);
     }
 
     @Override
@@ -130,38 +159,12 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     public void  OnViewCreated(final View handler, Bundle bundle){
      super.onViewCreated(handler, bundle);
      slideimage = (KenBurnsView)getActivity().findViewById(R.id.kbview);
-     int interval = 1000;
      activity = getActivity();
-        if (activity != null & isAdded()){
-         photos = (new Drawable [] {(getResources().getDrawable(R.drawable.moi_uni)),(getResources().getDrawable(R.drawable.moi_uni2)),(getResources().getDrawable(R.drawable.moi_uni3))});
+
         }
 
-        Handler handler1 = new Handler();
-         final String TAG = "hello";
 
 
-           //method that will be used to change the slideshow image
-         Runnable changeImage = new Runnable() {
-
-             @Override
-             public void run (){
-                 try{
-                     isRun = true;
-              int i = (new Random()).nextInt(photos.length);
-              slideimage.setImageResource(R.drawable.moi_uni3);
-              Log.d(TAG, "Each minute task executing");}
-
-                 catch(Exception e){
-                     isRun = false;
-                 }
-             }
-         };
-        handler1.postDelayed(changeImage,interval);
-         if(isRun == true){
-          System.out.println("wizkhal");
-         }
-
-         }
 
 
     public static Fragment newInstance(int i) {
