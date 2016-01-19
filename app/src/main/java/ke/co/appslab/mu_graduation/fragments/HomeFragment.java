@@ -4,14 +4,12 @@ package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +19,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.os.Handler;
 
@@ -113,10 +109,13 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
+        final long interval = 9000;
         activity = getActivity();
-        if(activity != null & isAdded()){
-             photos = new int[] {R.drawable.moi_uni,R.drawable.moi_uni2};
+
+
+        if(activity != null & isAdded()){ //to handle fragment is not attached error
+
+            photos = new int[] {R.drawable.moi_uni,R.drawable.moi_uni2};
         }
         handler = new Handler();
         Runnable changeimage = new Runnable() {
@@ -128,10 +127,11 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
                     int i = (new Random()).nextInt(photos.length);
                     slideimage.setImageResource(photos[i]);
                     //also call the same runnable
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, interval);
                 }
                 catch (Exception e) {
-                    Log.e("Mine","Didn't work");
+                    e.printStackTrace();
+                   // Log.e("Mine","Didn't work");
                 }
                 finally{
                     //also call the same runnable
@@ -149,6 +149,7 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
 //        return inflater.inflate(R.layout.fragment_tabbed, container, false);
         View view = inflater.inflate(R.layout.fragment_tabbed, container, false);
 
+        slideimage = (KenBurnsView)view.findViewById(R.id.kbview);
         ViewPager viewPager = (ViewPager)view.findViewById(R.id.viewpager);
         viewPager.setAdapter(new TabsPagerAdapter(getFragmentManager()));
 
@@ -158,8 +159,6 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
     }
     public void  OnViewCreated(final View handler, Bundle bundle){
      super.onViewCreated(handler, bundle);
-     slideimage = (KenBurnsView)getActivity().findViewById(R.id.kbview);
-     activity = getActivity();
 
         }
 
