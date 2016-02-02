@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
         final long interval = 9000;
         activity = getActivity();
 
-
+        //can activity be removed
         if(activity != null & isAdded()){ //to handle fragment is not attached error
 
             photos = new int[] {R.drawable.moi_uni,R.drawable.moi_uni2};

@@ -3,6 +3,8 @@ package ke.co.appslab.mu_graduation.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ke.co.appslab.mu_graduation.R;
 
 import ke.co.appslab.mu_graduation.ScrollTabHolder;
 import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
+import ke.co.appslab.mu_graduation.adapters.ContactInfo;
+import ke.co.appslab.mu_graduation.adapters.ScheduleFragmentAdapter;
 import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
 
 /**
@@ -67,24 +74,40 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
         super.onCreate(savedInstanceState);
 
 
-        // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.recyclerview, container, false);
+        RecyclerView recList = (RecyclerView) view.findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
 
-        // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-
-        // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
+        ScheduleFragmentAdapter ca = new ScheduleFragmentAdapter(createList(30));
+        recList.setAdapter(ca);
 
         return view;
+    }
+
+
+
+    private List<ContactInfo> createList(int size) {
+
+        List<ContactInfo> result = new ArrayList<ContactInfo>();
+        for (int i=1; i <= size; i++) {
+            ContactInfo ci = new ContactInfo();
+            ci.name = ContactInfo.NAME_PREFIX + i;
+            ci.surname = ContactInfo.SURNAME_PREFIX + i;
+            ci.email = ContactInfo.EMAIL_PREFIX + i + "@test.com";
+
+            result.add(ci);
+
+        }
+
+        return result;
     }
 
     @Override
@@ -119,13 +142,13 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
      * the list is empty. If you would like to change the text, call this method
      * to supply the text it should use.
      */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
-
-        if (emptyView instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
+//    public void setEmptyText(CharSequence emptyText) {
+//        //View emptyView = mListView.getEmptyView();
+//
+//        if (emptyView instanceof TextView) {
+//            ((TextView) emptyView).setText(emptyText);
+//        }
+//    }
 
     @Override
     public void adjustScroll(int i) {
