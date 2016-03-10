@@ -34,7 +34,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         ScrollTabHolderFragment scrollTabHolderfragment = null;
         switch(index){
             case 0:
-                scrollTabHolderfragment = ScheduleFragment.newInstance(index);
+                scrollTabHolderfragment = (ScrollTabHolderFragment)ScheduleFragment.newInstance(index);
                 break;
             case 1:
                 scrollTabHolderfragment = (ScrollTabHolderFragment)SpeakersFragment.newInstance(index);
