@@ -15,7 +15,6 @@ import android.widget.TextView;
 import ke.co.appslab.mu_graduation.R;
 
 import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
-import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -67,8 +66,6 @@ public class AwardsFragment extends ScrollTabHolderFragment implements AbsListVi
         super.onCreate(savedInstanceState);
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
     }
 
     @Override
@@ -109,7 +106,6 @@ public class AwardsFragment extends ScrollTabHolderFragment implements AbsListVi
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 

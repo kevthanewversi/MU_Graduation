@@ -3,7 +3,6 @@ package ke.co.appslab.mu_graduation.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,6 @@ import ke.co.appslab.mu_graduation.ScrollTabHolder;
 import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
 import ke.co.appslab.mu_graduation.adapters.ContactInfo;
 import ke.co.appslab.mu_graduation.adapters.ScheduleFragmentAdapter;
-import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -76,39 +74,9 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recyclerview, container, false);
-        RecyclerView recList = (RecyclerView) view.findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-
-        ScheduleFragmentAdapter ca = new ScheduleFragmentAdapter(createList(30));
-        recList.setAdapter(ca);
-
-        return view;
-    }
 
 
 
-    private List<ContactInfo> createList(int size) {
-
-        List<ContactInfo> result = new ArrayList<ContactInfo>();
-        for (int i=1; i <= size; i++) {
-            ContactInfo ci = new ContactInfo();
-            ci.name = ContactInfo.NAME_PREFIX + i;
-            ci.surname = ContactInfo.SURNAME_PREFIX + i;
-            ci.email = ContactInfo.EMAIL_PREFIX + i + "@test.com";
-
-            result.add(ci);
-
-        }
-
-        return result;
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -133,7 +101,6 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 
