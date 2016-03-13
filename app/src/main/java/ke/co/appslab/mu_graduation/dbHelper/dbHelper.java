@@ -29,8 +29,8 @@ public class dbHelper extends SQLiteOpenHelper
     private static final String CREATE_SCHEDULE_TABLE = "CREATE TABLE schedule(_id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT NOT NULL, desc TEXT NOT NULL, time TEXT NOT NULL, image TEXT NOT NULL);";
     private static final String CREATE_SCHOOLS_TABLE = "CREATE TABLE schools(_id INTEGER PRIMARY KEY AUTOINCREMENT, school_name TEXT NOT NULL, school_image TEXT NOT NULL);";
     private static final String CREATE_SPEAKERS_TABLE = "CREATE TABLE speakers(_id INTEGER PRIMARY KEY AUTOINCREMENT, speaker_name TEXT NOT NULL, speaker_title TEXT NOT NULL, speaker_bio TEXT NOT NULL, speaker_image TEXT NOT NULL);";
-    private static final String DATABASE_NAME = "su_graduation.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "mu_graduation.db";
+    private static final int DATABASE_VERSION = 1;
     public static final String GRADUANDS_COURSE_ID = "course_id";
     public static final String GRADUANDS_HONOURS_ID = "honours_id";
     public static final String GRADUANDS_IMAGE = "graduand_image";
@@ -111,7 +111,7 @@ public class dbHelper extends SQLiteOpenHelper
         contentvalues.put("graduand_image", s5);
         long l = sqlitedatabase.insert("graduands", null, contentvalues);
         sqlitedatabase.close();
-        Log.d(TAG, (new StringBuilder()).append("New graduand inserted into sqlite: ").append(l).toString());
+        Log.d(TAG, (new StringBuilder()).append("New graduand awards inserted into db: ").append(l).toString());
     }
 
     public void addGraduandAward(String s, String s1, String s2)
@@ -123,7 +123,7 @@ public class dbHelper extends SQLiteOpenHelper
         contentvalues.put("award_id", s2);
         long l = sqlitedatabase.insert("graduand_awards", null, contentvalues);
         sqlitedatabase.close();
-        Log.d(TAG, (new StringBuilder()).append("New graduand awards inserted into sqlite: ").append(l).toString());
+        Log.d(TAG, (new StringBuilder()).append("New graduand awards inserted into db: ").append(l).toString());
     }
 
     public void addHonours(String s, String s1, String s2)
