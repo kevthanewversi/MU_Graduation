@@ -1,6 +1,8 @@
 package ke.co.appslab.mu_graduation.activities;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -65,6 +67,11 @@ public class MainActivity extends ActionBarActivity
                 .replace(R.id.container, HomeFragment.newInstance(position + 1))
                 .commit();
 
+        case 6:
+        shareApp();
+
+
+
         }
     }
 
@@ -114,6 +121,25 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onFragmentInteraction(String id) {
 
+    }
+
+    private  void shareApp(){
+
+        PackageManager pm = getPackageManager();
+        try {
+            String playstoreURL = "https://play.google.com/store/apps/details?id=";
+            String appID = pm.getPackageInfo(getPackageName(),0).packageName;
+            String shareURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
+            Intent share = new Intent("android.intent.action.SEND");
+            share.setType("text/plain");
+            share.putExtra("android.intent.action.TEXT",  (new StringBuilder()).append("Get Moi University's graduation day app for Android here:").append(shareURL).toString());
+            share.putExtra("android.intent.action.SUBJECT","MU Graduation app");
+            startActivity(Intent.createChooser(share,"Share app via"));
+        }
+
+        catch(PackageManager.NameNotFoundException nameNotFoundException){
+            nameNotFoundException.printStackTrace();
+        }
     }
 
 
