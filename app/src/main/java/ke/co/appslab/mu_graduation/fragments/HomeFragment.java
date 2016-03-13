@@ -135,11 +135,11 @@ public class HomeFragment extends Fragment implements ScrollTabHolder, android.s
                 }
                 finally{
                     //also call the same runnable
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, interval);
                 }
             }
         };
-        handler.postDelayed(changeimage, 1000);
+        handler.postDelayed(changeimage, interval);
     }
 
     @Override
