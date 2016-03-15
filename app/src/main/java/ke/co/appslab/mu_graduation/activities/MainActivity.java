@@ -78,6 +78,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+
     public void onSectionAttached(int number) {
         String sections_array[] = getResources().getStringArray(R.array.section_titles);
         if(number >= 1){
@@ -125,6 +126,10 @@ public class MainActivity extends ActionBarActivity
     public void onFragmentInteraction(String id) {
 
     }
+
+    private void rateApp() {
+    }
+
 
     private  void shareApp(){
 
