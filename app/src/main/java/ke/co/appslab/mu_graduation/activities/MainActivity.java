@@ -66,9 +66,12 @@ public class MainActivity extends ActionBarActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, HomeFragment.newInstance(position + 1))
                 .commit();
+        case 4:
+        rateApp();
 
-        case 6:
+        case 5:
         shareApp();
+
 
 
 
