@@ -132,7 +132,18 @@ public class MainActivity extends ActionBarActivity
         try {
             String playstoreURL = "https://play.google.com/store/apps/details?id=";
             String appID = pm.getPackageInfo(getPackageName(), 0).packageName;
-            String shareURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
+            String rateURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
+            Intent rate = new Intent("android.intent.action.VIEW",rateURL);
+            //we add the following flags to go back to our application after user rates app and presses back button
+            rate.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            //now we fire the intent
+            startActivity(rate);
+        }
+        
+        catch(PackageManager.NameNotFoundException nameNotFoundException){
+            nameNotFoundException.printStackTrace();
         }
     }
 
