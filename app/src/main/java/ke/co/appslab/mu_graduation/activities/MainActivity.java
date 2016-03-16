@@ -128,8 +128,9 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void rateApp() {
-        PackageManager pm = getPackageManager();
+       
         try {
+            PackageManager pm = getPackageManager();
             String playstoreURL = "https://play.google.com/store/apps/details?id=";
             String appID = pm.getPackageInfo(getPackageName(), 0).packageName;
             String rateURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
@@ -150,8 +151,9 @@ public class MainActivity extends ActionBarActivity
 
     private  void shareApp(){
 
-        PackageManager pm = getPackageManager();
+        
         try {
+            PackageManager pm = getPackageManager();
             String playstoreURL = "https://play.google.com/store/apps/details?id=";
             String appID = pm.getPackageInfo(getPackageName(),0).packageName;
             String shareURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
