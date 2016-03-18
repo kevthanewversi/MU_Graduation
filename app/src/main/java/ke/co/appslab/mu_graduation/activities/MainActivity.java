@@ -134,7 +134,9 @@ public class MainActivity extends ActionBarActivity
             String playstoreURL = "https://play.google.com/store/apps/details?id=";
             String appID = pm.getPackageInfo(getPackageName(), 0).packageName;
             String rateURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
-            Intent rate = new Intent("android.intent.action.VIEW",rateURL);
+            Intent rate = new Intent("android.intent.action.VIEW");
+            rate.setType("text/plain");
+            rate.putExtra("android.intent.name.TEXT",rate);
             //we add the following flags to go back to our application after user rates app and presses back button
             rate.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
                     Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
