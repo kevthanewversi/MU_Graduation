@@ -13,7 +13,12 @@ import ke.co.appslab.mu_graduation.R;
 
 public class MapsFragment extends Fragment {
 
-
+    private SupportMapFragment mapFragment;
+    private GoogleMap googleMap;
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+    private long UPDATE_INTERVAL = 60000;  /* 60 secs */
+    private long FASTEST_INTERVAL = 5000; /* 5 secs */
     private OnFragmentInteractionListener mListener;
 
     /**
