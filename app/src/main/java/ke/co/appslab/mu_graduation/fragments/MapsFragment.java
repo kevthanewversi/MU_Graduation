@@ -55,6 +55,15 @@ public class MapsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_maps, container, false);
     }
 
+    public static Fragment newInstance(int i) {
+        MapsFragment tabbedFragment = new MapsFragment();
+        Bundle args = new Bundle();
+        args.putInt("position",i);
+        tabbedFragment.setArguments(args);
+        return tabbedFragment;
+    }
+
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

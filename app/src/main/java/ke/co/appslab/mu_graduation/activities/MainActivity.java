@@ -66,6 +66,10 @@ public class MainActivity extends ActionBarActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, HomeFragment.newInstance(position + 1))
                 .commit();
+        case 1:
+        fragmentManager.beginTransaction()
+                 .replace(R.id.container, MapsFragment.newInstance(position + 1))
+                 .commit();
         case 4:
         rateApp();
 
