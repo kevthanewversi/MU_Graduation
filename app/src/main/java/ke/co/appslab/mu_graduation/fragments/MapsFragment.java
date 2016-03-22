@@ -47,6 +47,14 @@ public class MapsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        try{
+            initializeMap();
+        }
+
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
