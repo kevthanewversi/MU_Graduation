@@ -1,14 +1,17 @@
 package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import ke.co.appslab.mu_graduation.R;
@@ -57,6 +60,16 @@ public class MapsFragment extends Fragment {
 
     }
 
+    private void initializeMap() {
+        if(googleMap == null) {
+         googleMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
+
+            if (googleMap == null) {
+                Toast.makeText(getApplicationContext(),"Unable to create maps",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,6 +83,11 @@ public class MapsFragment extends Fragment {
         args.putInt("position",i);
         tabbedFragment.setArguments(args);
         return tabbedFragment;
+    }
+    @Override
+    protected void OnResume(){
+    super.OnResume();
+    initializeMap();
     }
 
 
