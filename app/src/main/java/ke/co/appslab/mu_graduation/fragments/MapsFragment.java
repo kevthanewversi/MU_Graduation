@@ -8,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
 
 import ke.co.appslab.mu_graduation.R;
 
 
 public class MapsFragment extends Fragment {
 
-    private SupportMapFragment mapFragment;
+
     private GoogleMap googleMap;
     private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
     private long UPDATE_INTERVAL = 60000;  /* 60 secs */
     private long FASTEST_INTERVAL = 5000; /* 5 secs */
     private OnFragmentInteractionListener mListener;
