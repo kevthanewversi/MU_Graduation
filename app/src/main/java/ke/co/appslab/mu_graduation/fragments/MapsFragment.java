@@ -65,8 +65,9 @@ public class MapsFragment extends Fragment {
          googleMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 
             if (googleMap == null) {
-                Toast.makeText(getApplicationContext(),"Unable to create maps",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Unable to create maps",Toast.LENGTH_SHORT).show();
             }
+           
         }
     }
 
@@ -85,8 +86,8 @@ public class MapsFragment extends Fragment {
         return tabbedFragment;
     }
     @Override
-    protected void OnResume(){
-    super.OnResume();
+    public void onResume(){
+    super.onResume();
     initializeMap();
     }
 
