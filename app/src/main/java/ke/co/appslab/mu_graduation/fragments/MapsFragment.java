@@ -10,11 +10,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import ke.co.appslab.mu_graduation.R;
 
@@ -29,7 +35,7 @@ public class MapsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     double longitude = 20;
     double latitude = 20;
-    LatLng coordinate;
+    //LatLng coordinate;
 
     /**
      * Use this factory method to create a new instance of
@@ -81,7 +87,7 @@ public class MapsFragment extends Fragment {
 
     private void setMapOptions () {
         //combine longitude and latitude to form a coordinate
-        coordinate = new LatLng(longitude,latitude);
+        //coordinate = new LatLng(longitude,latitude);
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.setBuildingsEnabled(true);
         googleMap.setMyLocationEnabled(true);
@@ -89,9 +95,37 @@ public class MapsFragment extends Fragment {
         googleMap.getUiSettings().setZoomGesturesEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
         googleMap.getUiSettings().setRotateGesturesEnabled(true);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));  //then move camera to the coordinate we just created.
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+        googleMap.getUiSettings().setScrollGesturesEnabled(true);
+        googleMap.getUiSettings().setTiltGesturesEnabled(true);
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));  //then move camera to the coordinate we just created.
+        //googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+
+//        Marker clientMarker = googleMap.addMarker(new MarkerOptions()
+//                        .position(new LatLng(Double.valueOf(-12.1024174), Double.valueOf(-77.0262274)))
+//                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_taxi))
+//        );
+//        Marker clientMarker2 = googleMap.addMarker(new MarkerOptions()
+//                        .position(new LatLng(Double.valueOf(-12.1024637), Double.valueOf(-77.0242617)))
+//                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_location))
+//        );
+
+        CameraPosition camPos = new CameraPosition.Builder()
+                .target(getCenterCoordinate())
+                .zoom(17)
+                .build();
+        CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+        googleMap.animateCamera(camUpd3);
     }
+
+
+    public LatLng getCenterCoordinate(){
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(new LatLng(Double.valueOf(-12.1024174), Double.valueOf(-77.0262274)));
+        builder.include(new LatLng(Double.valueOf(-12.1024637), Double.valueOf(-77.0242617)));
+        LatLngBounds bounds = builder.build();
+        return bounds.getCenter();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

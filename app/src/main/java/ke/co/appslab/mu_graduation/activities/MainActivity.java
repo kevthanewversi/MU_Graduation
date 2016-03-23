@@ -6,19 +6,16 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 import ke.co.appslab.mu_graduation.fragments.AwardsFragment;
+import ke.co.appslab.mu_graduation.fragments.HelpFragment;
 import ke.co.appslab.mu_graduation.fragments.HomeFragment;
 import ke.co.appslab.mu_graduation.fragments.MapsFragment;
 import ke.co.appslab.mu_graduation.fragments.NavigationDrawerFragment;
@@ -63,14 +60,16 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         //main fragment will be the home fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.app.FragmentManager fragmentManager1 = getFragmentManager();
+
         switch (position)
         {case 0:
         fragmentManager.beginTransaction()
                 .replace(R.id.container, HomeFragment.newInstance(position + 1))
                 .commit();
         case 1:
-        fragmentManager.beginTransaction()
+        fragmentManager1.beginTransaction()
                  .replace(R.id.container, MapsFragment.newInstance(position + 1))
                  .commit();
         case 4:
@@ -78,6 +77,11 @@ public class MainActivity extends ActionBarActivity
 
         case 5:
         shareApp();
+
+            case 6:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, HelpFragment.newInstance(position + 1))
+                        .commit();
 
 
 
