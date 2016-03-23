@@ -3,21 +3,13 @@ package ke.co.appslab.mu_graduation.fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import ke.co.appslab.mu_graduation.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HelpFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HelpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HelpFragment extends Fragment {
 
 
@@ -29,7 +21,7 @@ public class HelpFragment extends Fragment {
     public static Fragment newInstance(int i) {
         HelpFragment tabbedFragment = new HelpFragment();
         Bundle args = new Bundle();
-        args.putInt("position",i);
+        args.putInt("position", i);
         tabbedFragment.setArguments(args);
         return tabbedFragment;
     }
