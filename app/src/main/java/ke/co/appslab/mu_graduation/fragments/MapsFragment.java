@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 import ke.co.appslab.mu_graduation.R;
 
@@ -25,6 +27,9 @@ public class MapsFragment extends Fragment {
     private long UPDATE_INTERVAL = 60000;  /* 60 secs */
     private long FASTEST_INTERVAL = 5000; /* 5 secs */
     private OnFragmentInteractionListener mListener;
+    double longitude = 20;
+    double latitude = 20;
+    LatLng latLng;
 
     /**
      * Use this factory method to create a new instance of
@@ -75,6 +80,9 @@ public class MapsFragment extends Fragment {
     }
 
     private void setMapOptions () {
+        
+        latLng = new LatLng(longitude,latitude);
+
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.setBuildingsEnabled(true);
         googleMap.setMyLocationEnabled(true);
@@ -82,6 +90,17 @@ public class MapsFragment extends Fragment {
         googleMap.getUiSettings().setZoomGesturesEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
         googleMap.getUiSettings().setRotateGesturesEnabled(true);
+
+
+
+
+
+
+
+        //provide latlang
+        //then move camera to the latLang we just created.
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 
     @Override
