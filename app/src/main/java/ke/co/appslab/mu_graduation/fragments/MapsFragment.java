@@ -29,7 +29,7 @@ public class MapsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     double longitude = 20;
     double latitude = 20;
-    LatLng latLng;
+    LatLng coordinate;
 
     /**
      * Use this factory method to create a new instance of
@@ -80,9 +80,8 @@ public class MapsFragment extends Fragment {
     }
 
     private void setMapOptions () {
-        
-        latLng = new LatLng(longitude,latitude);
-
+        //combine longitude and latitude to form a coordinate
+        coordinate = new LatLng(longitude,latitude);
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.setBuildingsEnabled(true);
         googleMap.setMyLocationEnabled(true);
@@ -90,17 +89,8 @@ public class MapsFragment extends Fragment {
         googleMap.getUiSettings().setZoomGesturesEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
         googleMap.getUiSettings().setRotateGesturesEnabled(true);
-
-
-
-
-
-
-
-        //provide latlang
-        //then move camera to the latLang we just created.
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));  //then move camera to the coordinate we just created.
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
     }
 
     @Override
