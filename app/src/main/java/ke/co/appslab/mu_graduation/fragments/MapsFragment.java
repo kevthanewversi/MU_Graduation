@@ -67,8 +67,15 @@ public class MapsFragment extends Fragment {
             if (googleMap == null) {
                 Toast.makeText(getActivity(),"Unable to create maps",Toast.LENGTH_SHORT).show();
             }
-           
+
+            else{
+                setMapOptions();
+            }
         }
+    }
+
+    private void setMapOptions () {
+        
     }
 
     @Override
