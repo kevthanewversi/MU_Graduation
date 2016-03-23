@@ -75,7 +75,13 @@ public class MapsFragment extends Fragment {
     }
 
     private void setMapOptions () {
-        
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setBuildingsEnabled(true);
+        googleMap.setMyLocationEnabled(true);
+        googleMap.getUiSettings().setZoomControlsEnabled(false);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
+        googleMap.getUiSettings().setRotateGesturesEnabled(true);
     }
 
     @Override
