@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import ke.co.appslab.mu_graduation.fragments.AboutFragment;
 import ke.co.appslab.mu_graduation.fragments.AwardsFragment;
 import ke.co.appslab.mu_graduation.fragments.HelpFragment;
 import ke.co.appslab.mu_graduation.fragments.HomeFragment;
@@ -78,14 +79,15 @@ public class MainActivity extends ActionBarActivity
         case 5:
         shareApp();
 
-            case 6:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, HelpFragment.newInstance(position + 1))
-                        .commit();
+        case 6:
+        fragmentManager.beginTransaction()
+                 .replace(R.id.container, HelpFragment.newInstance(position + 1))
+                 .commit();
 
-
-
-
+        case 7:
+        fragmentManager.beginTransaction()
+                 .replace(R.id.container, AboutFragment.newInstance(position + 1))
+                  .commit();
         }
     }
 
