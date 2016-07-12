@@ -34,23 +34,8 @@ import ke.co.appslab.mu_graduation.adapters.ScheduleFragmentAdapter;
  */
 public class ScheduleFragment extends ScrollTabHolderFragment implements AbsListView.OnScrollListener,AbsListView.OnItemClickListener {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_POSITION = "position";
     private int mPosition;
-
-
     private OnFragmentInteractionListener mListener;
-
-    /**
-     * The fragment's ListView/GridView.
-     */
-    private AbsListView mListView;
-
-    /**
-     * The Adapter which will be used to populate the ListView/GridView with
-     * Views.
-     */
-    private ListAdapter mAdapter;
 
     public static Fragment newInstance(int i) {
         ScheduleFragment scheduleFragment = new ScheduleFragment();
@@ -75,7 +60,12 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
     }
 
 
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_schedule, container, false);
+    }
 
 
     @Override
