@@ -1,14 +1,19 @@
 package ke.co.appslab.mu_graduation.activities;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,7 +35,7 @@ import static ke.co.appslab.mu_graduation.fragments.NavigationDrawerFragment.Nav
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener,SchoolsFragment.OnFragmentInteractionListener,AwardsFragment.OnFragmentInteractionListener{
+        implements NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener,SchoolsFragment.OnFragmentInteractionListener,AwardsFragment.OnFragmentInteractionListener,MapsFragment.OnFragmentInteractionListener,HelpFragment.OnFragmentInteractionListener,AboutFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -41,6 +46,7 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,33 +67,37 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         //main fragment will be the home fragment
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.app.FragmentManager fragmentManager1 = getFragmentManager();
 
         switch (position)
         {case 0:
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, HomeFragment.newInstance(position + 1))
-                .commit();
-        case 1:
-        fragmentManager1.beginTransaction()
-                 .replace(R.id.container, MapsFragment.newInstance(position + 1))
-                 .commit();
-        case 4:
-        rateApp();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, HomeFragment.newInstance(position + 1))
+                    .commit();
+            break;
+            case 1:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, MapsFragment.newInstance(position + 1))
+                        .commit();
+                break;
+            case 4:
+                rateApp();
+                break;
 
-        case 5:
-        shareApp();
+            case 5:
+                shareApp();
+                break;
 
-        case 6:
-        fragmentManager.beginTransaction()
-                 .replace(R.id.container, HelpFragment.newInstance(position + 1))
-                 .commit();
+            case 6:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, HelpFragment.newInstance(position + 1))
+                        .commit();
+                break;
 
-        case 7:
-        fragmentManager.beginTransaction()
-                 .replace(R.id.container, AboutFragment.newInstance(position + 1))
-                  .commit();
+            case 7:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, AboutFragment.newInstance(position + 1))
+                        .commit();
+                break;
         }
     }
 
@@ -95,9 +105,9 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         String sections_array[] = getResources().getStringArray(R.array.section_titles);
         if(number >= 1){
-        mTitle = sections_array[number-1];
+            mTitle = sections_array[number-1];
         }
-        }
+    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -141,32 +151,61 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void rateApp() {
-       
+
+
+
+        //////THIS RATE CODE DOES WORK AND I DON'T KNOW WHY, I ALSO DON'T CARE FOR NOW....EVER!
+//        try {
+//            PackageManager pm = getPackageManager();
+//            String playstoreURL = "market://details?id=";
+//            String appID = pm.getPackageInfo(getPackageName(), 0).packageName;
+//            String rateURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
+//            Intent rate = new Intent("android.intent.action.VIEW");
+//            rate.setType("text/plain");
+//            rate.putExtra("android.intent.name.TEXT", rateURL);
+//            //we add the following flags to go back to our application after user rates app and presses back button
+//            rate.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+//                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+//                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+//            //now we fire the intent
+//            try {
+//                startActivity(rate);
+//            } catch (ActivityNotFoundException anfe) {
+//                Log.e("ANFE", "Playstore not installed!");
+//                viewinBrowser(context, rateURL);
+//            }
+//        }
+//
+//        catch(PackageManager.NameNotFoundException nameNotFoundException){
+//            nameNotFoundException.printStackTrace();
+//        }
+
+
+        PackageManager pm = getPackageManager();
+        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         try {
-            PackageManager pm = getPackageManager();
-            String playstoreURL = "https://play.google.com/store/apps/details?id=";
-            String appID = pm.getPackageInfo(getPackageName(), 0).packageName;
-            String rateURL = (new StringBuilder()).append(playstoreURL).append(appID).toString();
-            Intent rate = new Intent("android.intent.action.VIEW");
-            rate.setType("text/plain");
-            rate.putExtra("android.intent.name.TEXT",rate);
-            //we add the following flags to go back to our application after user rates app and presses back button
-            rate.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
-                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            //now we fire the intent
-            startActivity(rate);
+            startActivity(goToMarket);
         }
-        
-        catch(PackageManager.NameNotFoundException nameNotFoundException){
-            nameNotFoundException.printStackTrace();
+        catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
         }
+
+
+
+
+
     }
 
 
     private  void shareApp(){
 
-        
+
         try {
             PackageManager pm = getPackageManager();
             String playstoreURL = "https://play.google.com/store/apps/details?id=";
@@ -184,9 +223,14 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    public void viewinBrowser(Context cxt, String rateURL){
+
+
+    }
+
 
     @Override
-    public FragmentManager getSupportFragmentManager() {
-        return null;
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

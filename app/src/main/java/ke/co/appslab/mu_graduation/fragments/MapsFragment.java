@@ -1,9 +1,9 @@
 package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +73,7 @@ public class MapsFragment extends Fragment {
 
     private void initializeMap() {
         if(googleMap == null) {
-         googleMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
+         googleMap = ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map)).getMap();
 
             if (googleMap == null) {
                 Toast.makeText(getActivity(),"Unable to create maps",Toast.LENGTH_SHORT).show();

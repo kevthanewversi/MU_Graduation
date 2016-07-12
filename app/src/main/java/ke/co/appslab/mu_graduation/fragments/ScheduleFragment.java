@@ -2,7 +2,9 @@ package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,10 +34,12 @@ import ke.co.appslab.mu_graduation.adapters.ScheduleFragmentAdapter;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ScheduleFragment extends ScrollTabHolderFragment implements AbsListView.OnScrollListener,AbsListView.OnItemClickListener {
+public class ScheduleFragment extends ScrollTabHolderFragment {
 
     private int mPosition;
     private OnFragmentInteractionListener mListener;
+    ArrayList<ContactInfo> contact;
+    ScheduleFragmentAdapter scheduleFragmentAdapter;
 
     public static Fragment newInstance(int i) {
         ScheduleFragment scheduleFragment = new ScheduleFragment();
@@ -57,6 +61,7 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
         super.onCreate(savedInstanceState);
 
 
+
     }
 
 
@@ -64,7 +69,16 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
+        RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.cardList);
+
+        contact = ContactInfo.createContactsList(20);
+        scheduleFragmentAdapter = new ScheduleFragmentAdapter(contact);
+        recyclerView.setAdapter(scheduleFragmentAdapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+
+        return  rootView;
     }
 
 
@@ -86,13 +100,13 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
     }
 
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-        }
-    }
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        if (null != mListener) {
+//            // Notify the active callbacks interface (the activity, if the
+//            // fragment is attached to one) that an item has been selected.
+//        }
+//    }
 
     /**
      * The default content for this Fragment has a TextView that is shown when
@@ -112,18 +126,18 @@ public class ScheduleFragment extends ScrollTabHolderFragment implements AbsList
 
     }
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        if(mScrollTabHolder != null){
-            mScrollTabHolder.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount,mPosition);
-        }
-
-    }
+//    @Override
+//    public void onScrollStateChanged(AbsListView view, int scrollState) {
+//
+//    }
+//
+//    @Override
+//    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//        if(mScrollTabHolder != null){
+//            mScrollTabHolder.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount,mPosition);
+//        }
+//
+//    }
 
     /**
      * This interface must be implemented by activities that contain this

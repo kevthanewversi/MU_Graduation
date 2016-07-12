@@ -1,5 +1,6 @@
 package ke.co.appslab.mu_graduation.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,30 +17,21 @@ import ke.co.appslab.mu_graduation.R;
 public class ScheduleFragmentAdapter extends RecyclerView.Adapter<ScheduleFragmentAdapter.ContactViewHolder> {
 
     private List<ContactInfo> contactList;
+    private Context mContext;
 
+
+    //pass the contact array into the constructor
     public ScheduleFragmentAdapter(List<ContactInfo> contactList) {
         this.contactList = contactList;
     }
 
-    @Override
-    public int getItemCount() {
-        return contactList.size();
-    }
 
-    @Override
-    public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
-        ContactInfo ci = contactList.get(i);
-        contactViewHolder.vName.setText(ci.name);
-        contactViewHolder.vSurname.setText(ci.surname);
-        contactViewHolder.vEmail.setText(ci.email);
-        contactViewHolder.vTitle.setText(ci.name + " " + ci.surname);
-    }
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.fragment_schedule1, viewGroup, false);
+                inflate(R.layout.recyclerview, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }
@@ -47,8 +39,6 @@ public class ScheduleFragmentAdapter extends RecyclerView.Adapter<ScheduleFragme
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
         protected TextView vName;
         protected TextView vSurname;
-        protected TextView vEmail;
-        protected TextView vTitle;
 
         public ContactViewHolder(View v) {
             super(v);
@@ -56,4 +46,24 @@ public class ScheduleFragmentAdapter extends RecyclerView.Adapter<ScheduleFragme
             vSurname = (TextView) v.findViewById(R.id.scheduledesc);
         }
     }
+
+    @Override
+    public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
+        ContactInfo ci = contactList.get(i);
+        contactViewHolder.vName.setText(ci.name);
+        contactViewHolder.vSurname.setText(ci.surname);
+
+    }
+
+    @Override
+    public int getItemCount() {
+
+        return contactList.size();
+    }
+
+    // Easy access to the context object in the recyclerview
+    private Context getContext() {
+        return mContext;
+    }
+
 }
