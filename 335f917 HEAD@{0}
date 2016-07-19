@@ -1,0 +1,85 @@
+335f917 HEAD@{0}: commit: *corrected wrong declaration of permissions. Maps now working again
+ee2d653 HEAD@{1}: checkout: moving from new_working to master
+2b2ed5b HEAD@{2}: checkout: moving from master to new_working
+ee2d653 HEAD@{3}: commit: *recyclerview in schedulefragment is now working. Finally!!
+d3da136 HEAD@{4}: commit: few deletions and edits
+dafde04 HEAD@{5}: commit: **did a git reset --hard to 9eb07711eeab700d3c7a1edfd78506a6e9c127dd *most modules are now working again *full list of modules working - map,rateapp,shareapp,homefragment and everything in it
+9eb0771 HEAD@{6}: checkout: moving from new_working to master
+2b2ed5b HEAD@{7}: commit: now works!
+9eb0771 HEAD@{8}: checkout: moving from master to new_working
+9eb0771 HEAD@{9}: reset: moving to 9eb07711eeab700d3c7a1edfd78506a6e9c127dd
+400443e HEAD@{10}: commit (merge): **did a git reset --hard to 9eb07711eeab700d3c7a1edfd78506a6e9c127dd *most modules are now working again *full list of modules wworking - map,rateapp,shareapp,homefragment nad everything in it
+ec76b50 HEAD@{11}: commit: **did a git reset --hard to 9eb07711eeab700d3c7a1edfd78506a6e9c127dd *most modules are now working again *full list of modules wworking - map,rateapp,shareapp,homefragment nad everything in it
+9eb0771 HEAD@{12}: reset: moving to 9eb07711eeab700d3c7a1edfd78506a6e9c127dd
+ed14697 HEAD@{13}: commit: *added maps key to app *implemented new permissions model(API v23) *implemented AboutFragment in mainactivity
+7daede2 HEAD@{14}: commit: now using getChildFragmentManager to initialize mapFragment since it's a fragment inside a fragment
+293b497 HEAD@{15}: commit: added the key for google maps API
+faa6a62 HEAD@{16}: commit: now adding map key
+6cfc998 HEAD@{17}: commit: few minor tweaks to main activity
+943ee9a HEAD@{18}: commit: back to using s=supportmapfragment
+37ae2cc HEAD@{19}: commit: I had declared a method getSupportFragment in my activity as null hence the npes when calling the method. changed it now
+6a14261 HEAD@{20}: commit: changed mapfragment in layout to supportmapfragment
+e3797ab HEAD@{21}: commit: removed code that I used to debug app
+c4496bb HEAD@{22}: commit: changed getsupportfragment to getfragment and now app is working again
+1779ac9 HEAD@{23}: commit: gradle changes ie some dependencies and the compile and build sdk versions
+23136ae HEAD@{24}: commit: still trying to recitfy error caused by the nav drawer fragment so I made some few changes here and there
+bb380ed HEAD@{25}: commit: few formatting changes
+4d5ae28 HEAD@{26}: commit: finished code to hide and show action bar
+4efa94d HEAD@{27}: commit: added code to show action bar on scroll,test it later today
+555dad9 HEAD@{28}: commit: begun work on hiding and showing the action bar
+3b030ff HEAD@{29}: commit: made changes to tab strip styling
+85b1a2c HEAD@{30}: commit: still tab strip layout changes
+b930d7f HEAD@{31}: commit: changed style of the tab indicators
+9ab1b61 HEAD@{32}: commit: change to manifest
+f3f5646 HEAD@{33}: commit: finished up SlashActivity code
+ee74472 HEAD@{34}: commit: made changes to manifest to accomodate splash screen activity
+772722a HEAD@{35}: commit: new changes to splash screen
+d19fafa HEAD@{36}: commit: woke up in the morning and decided the app needs a splash screen. work begins
+4d43953 HEAD@{37}: commit: few formatting changes
+5cb0a9a HEAD@{38}: commit: did some workk on recyclerview in ScheduleFragmentAdapter
+5d00a3b HEAD@{39}: commit: made changes to the ScheduleFragmentAdapter.java class
+2810007 HEAD@{40}: commit: just formatting changes
+9e39dd2 HEAD@{41}: commit: added the FeedItem class with getters and setters
+2d0a23c HEAD@{42}: commit: did a few changes to ScheduleFragment + subclassed the Async Task class in it
+689fa6c HEAD@{43}: commit: added parseResult method
+84d6364 HEAD@{44}: commit: finished up onPostExecute method code
+3f59b4e HEAD@{45}: commit: added onPostExecute code to update the UI with data
+f22e1d9 HEAD@{46}: commit: added try and catvh blovks for fetching data from a url
+919926f HEAD@{47}: commit: added the internet permission to the manifest file
+3550d74 HEAD@{48}: commit: wrote code which fetches data from url ..in doInBackground
+4becf14 HEAD@{49}: commit: added onPostExecute and onPreExecute methods to AsyncHttpTask class
+7675b71 HEAD@{50}: commit: started work on Async Http Task method
+2c31565 HEAD@{51}: commit: added a configs file and started writing the Aync Task class
+6f846da HEAD@{52}: commit: started work on receyclerview again and added progressbar this time
+9eb0771 HEAD@{53}: commit: added nav drawer code for the aboutfragment case 7
+dc8156b HEAD@{54}: commit: changed about and help fragment from their default extending of fragment to extending of support fragment so as to work with the nav drawer
+67e58c9 HEAD@{55}: commit: linked help and about fragments to nav drawer
+6024fbe HEAD@{56}: commit: changed zoomTo() level,changed formating and added comments
+76632cd HEAD@{57}: commit: added code to move the map camera to certain coordinates
+b49c7e5 HEAD@{58}: commit: finsihed code for setMapOptions method
+7d79ee3 HEAD@{59}: commit: created setMapOptions method
+d3b05fd HEAD@{60}: commit: changed the onResume method,now works correctly
+d8ea4ec HEAD@{61}: commit: added some code to Map fragment to load map. no coordinates yet though
+223b733 HEAD@{62}: commit: changed the map fragment xml
+a67dbf2 HEAD@{63}: commit: added About app fragment view and java code shell
+abcca21 HEAD@{64}: commit: added helpFragment to app
+faa36a0 HEAD@{65}: commit: got rid of errors and initialized some variables in mapsfragment
+e59286b HEAD@{66}: commit: added code to open Maps from nav_drawer
+d24e6ab HEAD@{67}: commit: downloading of all map dependancies has begun
+ed14697 HEAD@{68}: commit: few changes on MapsFragment
+60666bd HEAD@{69}: commit: debugging of rateApp()
+27d7797 HEAD@{70}: commit: added maps dependancies
+8ec2c40 HEAD@{71}: commit: work begins on mapFragment
+561d142 HEAD@{72}: pull: Fast-forward
+4cc0e76 HEAD@{73}: commit: added try block of rateApp
+bed64c3 HEAD@{74}: commit: rateApp method shell created
+f85f6fc HEAD@{75}: commit: work on rateApp code begins
+8093dfb HEAD@{76}: commit: wrote code for share app from navdrawer, yet to test on device
+2f76b4c HEAD@{77}: commit: changed slideshow interval to 9 seconds
+e2d2e9f HEAD@{78}: commit: did some clean up on project
+3ab2f65 HEAD@{79}: commit: made a few changes to db Helper class
+66d00d4 HEAD@{80}: commit: added dbHelper class for database ops
+473550f HEAD@{81}: checkout: moving from 2aaefccfa3f78de9277ae81cd978d2a45711ff22 to master
+2aaefcc HEAD@{82}: commit: added dbHelper class for database operations
+7498dcf HEAD@{83}: checkout: moving from master to 7498dcfdf7a118a044ed8c2aea6003692042e98f
+473550f HEAD@{84}: clone: from git@github.com:kevthanewversi/MU_Graduation.git
