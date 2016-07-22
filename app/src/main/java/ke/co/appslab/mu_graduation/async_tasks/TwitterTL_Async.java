@@ -26,8 +26,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.activities.MainActivity;
 import ke.co.appslab.mu_graduation.twitter.Tweet;
+import ke.co.appslab.mu_graduation.twitter.Twitter;
 
 /**
  * Created by root on 7/22/16.
@@ -89,7 +91,7 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
             if (auth != null && auth.token_type.equals("bearer")) {
 
                 // Step 3: Authenticate API requests with bearer token
-                HttpGet httpGet = new HttpGet(TwitterStreamURL + screenName);
+                HttpGet httpGet = new HttpGet(TwitterStreamURL + screenname);
 
                 // construct a normal HTTPS request and include an Authorization
                 // header with the value of Bearer <>
@@ -158,13 +160,22 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         }
 
         //initialize and set the adapter
-        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>(activity, android.R.layout.simple_list_item_1, tweets);
-        setListAdapter(adapter);
+        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>(activity, R.layout.fragment_twitterstream, tweets);
+        setAdapter(adapter);
     }
 
     private ArrayList jsonToTwitter(String result) {
         ArrayList<Tweet> tweets = null;
-        if (result )
+        if (result != null & result.length() >0 ){
+            try{
+           Gson gson = new Gson();
+            tweets = gson.fromJson(result, Twitter.class);}
+
+            catch (IllegalStateException ex) {
+                // just eat the exception
+            }
+        }
+        return tweets;
     }
 
 }

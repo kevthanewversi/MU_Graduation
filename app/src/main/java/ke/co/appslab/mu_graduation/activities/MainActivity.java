@@ -30,6 +30,7 @@ import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.fragments.ScheduleFragment;
 import ke.co.appslab.mu_graduation.fragments.SchoolsFragment;
 import ke.co.appslab.mu_graduation.fragments.SpeakersFragment;
+import ke.co.appslab.mu_graduation.fragments.TwitterStreamFragment;
 
 import static ke.co.appslab.mu_graduation.fragments.NavigationDrawerFragment.NavigationDrawerCallbacks;
 
@@ -79,6 +80,7 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, MapsFragment.newInstance(position + 1))
                         .commit();
                 break;
+         
             case 4:
                 rateApp();
                 break;
