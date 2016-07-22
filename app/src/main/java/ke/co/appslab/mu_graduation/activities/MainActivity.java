@@ -80,7 +80,11 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, MapsFragment.newInstance(position + 1))
                         .commit();
                 break;
-         
+            case 2:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, TwitterStreamFragment.newInstance(position + 1))
+                        .commit();
+                break;
             case 4:
                 rateApp();
                 break;
