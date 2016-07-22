@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 
 import org.apache.http.HttpEntity;
@@ -40,6 +42,8 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
     final static String TwitterTokenURL = "https://api.twitter.com/oauth2/token";
     final static String TwitterStreamURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=";
     MainActivity  activity;
+    View rootView;
+    Context context;
 
     public class Authenticated {
         String token_type;
@@ -47,9 +51,10 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
 
     }
 
-//    public TwitterTL_Async () {
-//        String screename;
-//    }
+    public TwitterTL_Async ( View rootView,Context context) {
+        this.rootView = rootView;
+        this.context = context;
+    }
 
     @Override
     protected String doInBackground(String... screennames) {
@@ -160,8 +165,14 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         }
 
         //initialize and set the adapter
-        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>(activity, R.layout.fragment_twitterstream, tweets);
-        setAdapter(adapter);
+        AbsListView mListView = (AbsListView)rootView.findViewById(android.R.id.list);
+        try{
+        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>( , android.R.layout.simple_list_item_1, tweets);
+
+        mListView.setAdapter(adapter);}
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     private ArrayList jsonToTwitter(String result) {

@@ -36,7 +36,7 @@ import static ke.co.appslab.mu_graduation.fragments.NavigationDrawerFragment.Nav
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener,SchoolsFragment.OnFragmentInteractionListener,AwardsFragment.OnFragmentInteractionListener,MapsFragment.OnFragmentInteractionListener,HelpFragment.OnFragmentInteractionListener,AboutFragment.OnFragmentInteractionListener{
+        implements NavigationDrawerCallbacks,ScheduleFragment.OnFragmentInteractionListener,SpeakersFragment.OnFragmentInteractionListener,SchoolsFragment.OnFragmentInteractionListener,AwardsFragment.OnFragmentInteractionListener,MapsFragment.OnFragmentInteractionListener,HelpFragment.OnFragmentInteractionListener,AboutFragment.OnFragmentInteractionListener,TwitterStreamFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

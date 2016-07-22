@@ -1,8 +1,12 @@
 package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import ke.co.appslab.mu_graduation.R;
-
-import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
+import ke.co.appslab.mu_graduation.async_tasks.TwitterTL_Async;
 
 /**
  * A fragment representing a list of Items.
@@ -28,6 +31,8 @@ import ke.co.appslab.mu_graduation.fragments.dummy.DummyContent;
 public class TwitterStreamFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
+    public String screeName = "urbanslug";
+    Context context;
 
     /**
      * The fragment's ListView/GridView.
@@ -53,9 +58,10 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,11 +69,12 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         View view = inflater.inflate(R.layout.fragment_twitterstream, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-
-        // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
+//        mListView = (AbsListView) view.findViewById(android.R.id.list);
+//            ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+//
+//        // Set OnItemClickListener so we can be notified on item clicks
+//        mListView.setOnItemClickListener(this);
+        fetchTweets(view,context);
 
         return view;
     }
@@ -79,6 +86,21 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         tabbedFragment.setArguments(args);
         return tabbedFragment;
     }
+
+    private void fetchTweets(View view,Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(netInfo != null & netInfo.isConnected())
+        {
+            new TwitterTL_Async(view,context).execute(screeName);
+        }
+        else{
+            //show alert dialog to tell user to turn on internet or WiFi
+            Log.e("KeEEVIn","WIFI");
+        }
+    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -103,7 +125,7 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 
