@@ -32,7 +32,6 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
     private OnFragmentInteractionListener mListener;
     public String screeName = "urbanslug";
-    Context context;
 
     /**
      * The fragment's ListView/GridView.
@@ -74,7 +73,7 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 //
 //        // Set OnItemClickListener so we can be notified on item clicks
 //        mListView.setOnItemClickListener(this);
-        fetchTweets(view,context);
+        fetchTweets(view);
 
         return view;
     }
@@ -87,13 +86,14 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         return tabbedFragment;
     }
 
-    private void fetchTweets(View view,Context context) {
+    private void fetchTweets(View view) {
         ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
 
         if(netInfo != null & netInfo.isConnected())
         {
-            new TwitterTL_Async(view,context).execute(screeName);
+            TwitterTL_Async twitterTL_async = new TwitterTL_Async(view,getActivity());
+            twitterTL_async.execute(screeName);
         }
         else{
             //show alert dialog to tell user to turn on internet or WiFi

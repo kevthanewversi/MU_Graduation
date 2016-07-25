@@ -167,7 +167,7 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         //initialize and set the adapter
         AbsListView mListView = (AbsListView)rootView.findViewById(android.R.id.list);
         try{
-        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>( , android.R.layout.simple_list_item_1, tweets);
+        ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>( context, android.R.layout.simple_list_item_1, tweets);
 
         mListView.setAdapter(adapter);}
         catch(Exception e){
