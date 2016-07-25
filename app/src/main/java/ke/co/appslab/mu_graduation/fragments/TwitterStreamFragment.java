@@ -1,7 +1,9 @@
 package ke.co.appslab.mu_graduation.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.async_tasks.TwitterTL_Async;
@@ -92,12 +95,44 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
         if(netInfo != null & netInfo.isConnected())
         {
+            //here we are passing getActivity() to be used as context when initialising the
+            // ArrayAdapter in TwitterTL_Async onPostExecute
             TwitterTL_Async twitterTL_async = new TwitterTL_Async(view,getActivity());
             twitterTL_async.execute(screeName);
         }
         else{
             //show alert dialog to tell user to turn on internet or WiFi
-            Log.e("KeEEVIn","WIFI");
+            Log.e("CONN","Connect to WIFI/data");
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+            // Setting Dialog Title
+            alertDialog.setTitle("No Internet Connection");
+
+            // Setting Dialog Message
+            alertDialog.setMessage("Please turn on your data connection or connect to WiFi");
+
+            // Setting Icon to Dialog
+            //alertDialog.setIcon(R.drawable.delete);
+
+            // Setting Positive "Yes" Button
+            alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,int which) {
+               
+                }
+            });
+
+            // Setting Negative "NO" Button
+            alertDialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // Write your code here to invoke NO event
+                    Toast.makeText(getActivity(), "You clicked on NO", Toast.LENGTH_SHORT).show();
+                    dialog.cancel();
+                }
+            });
+
+            // Showing Alert Message
+            alertDialog.show();
         }
     }
 
