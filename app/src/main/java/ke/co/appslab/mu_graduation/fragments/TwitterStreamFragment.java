@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -91,9 +92,10 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
     private void fetchTweets(View view) {
         ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo netInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-        if(netInfo != null & netInfo.isConnected())
+        try{
+        if(netInfo != null & netInfo.isConnectedOrConnecting())
         {
             //here we are passing getActivity() to be used as context when initialising the
             // ArrayAdapter in TwitterTL_Async onPostExecute
@@ -118,7 +120,9 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
             // Setting Positive "Yes" Button
             alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,int which) {
-               
+               Intent settings =  new Intent(android.provider.Settings.ACTION_SETTINGS);
+               settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               startActivity(settings);
                 }
             });
 
@@ -126,14 +130,15 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
             alertDialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     // Write your code here to invoke NO event
-                    Toast.makeText(getActivity(), "You clicked on NO", Toast.LENGTH_SHORT).show();
                     dialog.cancel();
                 }
             });
 
             // Showing Alert Message
             alertDialog.show();
-        }
+        }}
+        catch (Exception e)
+        {e.printStackTrace();}
     }
 
 
