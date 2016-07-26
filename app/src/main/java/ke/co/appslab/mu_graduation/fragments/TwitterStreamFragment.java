@@ -35,7 +35,7 @@ import ke.co.appslab.mu_graduation.async_tasks.TwitterTL_Async;
 public class TwitterStreamFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
-    public String screeName = "urbanslug";
+    public String screeName = "kevthanewversi";
 
     /**
      * The fragment's ListView/GridView.
@@ -92,10 +92,12 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
     private void fetchTweets(View view) {
         ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
         try{
-        if(netInfo != null & netInfo.isConnectedOrConnecting())
+            //check if the network/s are connected or connecting
+        if(wifiInfo != null & wifiInfo.isConnectedOrConnecting() || mobileInfo != null & mobileInfo.isConnectedOrConnecting())
         {
             //here we are passing getActivity() to be used as context when initialising the
             // ArrayAdapter in TwitterTL_Async onPostExecute
@@ -107,30 +109,29 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
             Log.e("CONN","Connect to WIFI/data");
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-
             // Setting Dialog Title
             alertDialog.setTitle("No Internet Connection");
 
             // Setting Dialog Message
-            alertDialog.setMessage("Please turn on your data connection or connect to WiFi");
+            alertDialog.setMessage("Please turn on your data connection or connect to WiFi to load tweets");
 
             // Setting Icon to Dialog
             //alertDialog.setIcon(R.drawable.delete);
 
             // Setting Positive "Yes" Button
-            alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            alertDialog.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,int which) {
-               Intent settings =  new Intent(android.provider.Settings.ACTION_SETTINGS);
-               settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-               startActivity(settings);
+                    dialog.cancel();
                 }
             });
 
             // Setting Negative "NO" Button
-            alertDialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            alertDialog.setNegativeButton("Settings", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     // Write your code here to invoke NO event
-                    dialog.cancel();
+                    Intent settings =  new Intent(android.provider.Settings.ACTION_SETTINGS);
+                    settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(settings);
                 }
             });
 

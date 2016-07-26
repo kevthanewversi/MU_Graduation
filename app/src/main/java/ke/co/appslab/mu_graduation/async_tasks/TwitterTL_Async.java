@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -44,6 +45,9 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
     MainActivity  activity;
     View rootView;
     Context context;
+    //progress bar
+    ProgressBar progressBar;
+
 
     public class Authenticated {
         String token_type;
@@ -54,6 +58,7 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
     public TwitterTL_Async ( View rootView,Context context) {
         this.rootView = rootView;
         this.context = context;
+        progressBar  = (ProgressBar)rootView.findViewById(R.id.pbHeaderProgress);
     }
 
     @Override
@@ -66,6 +71,15 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         }
         return result;
     }
+
+//
+//    @Override
+//    protected void onPreExecute() {
+//        super.onPreExecute();
+//        //show progress bar as data is being fetched
+//
+//        progressBar.setVisibility(View.VISIBLE);
+//    }
 
     private String fetchTwitterStream(String screenname) {
         String results = null;
@@ -167,12 +181,15 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         //initialize and set the adapter
         AbsListView mListView = (AbsListView)rootView.findViewById(android.R.id.list);
         try{
+            //change this view
         ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>( context, android.R.layout.simple_list_item_1, tweets);
 
         mListView.setAdapter(adapter);}
         catch(Exception e){
             e.printStackTrace();
         }
+        //hide the progress bar after tweets are fetched
+        progressBar.setVisibility(View.GONE);
     }
 
     private ArrayList jsonToTwitter(String result) {
