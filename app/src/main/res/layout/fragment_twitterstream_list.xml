@@ -7,14 +7,14 @@
         android:layout_height="wrap_content"
         tools:context="ke.co.appslab.mu_graduation.fragments.TwitterStreamFragment">
 
-    <ProgressBar
+    <!-- <ProgressBar
         android:id="@+id/pbHeaderProgress"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity = "center"
         android:indeterminateDrawable="@drawable/progressbar" >
-    </ProgressBar>
+    </ProgressBar> -->
 
     <ListView android:id="@android:id/list" android:layout_width="match_parent"
         android:layout_height="match_parent" />

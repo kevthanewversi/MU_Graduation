@@ -49,6 +49,8 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
      */
     private ListAdapter mAdapter;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -70,7 +72,7 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_twitterstream, container, false);
+        final View view = inflater.inflate(R.layout.fragment_twitterstream, container, false);
 
         // Set the adapter
 //        mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -78,9 +80,31 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 //
 //        // Set OnItemClickListener so we can be notified on item clicks
 //        mListView.setOnItemClickListener(this);
+        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+
+
         fetchTweets(view);
 
         return view;
+    }
+
+    public void onViewCreated(final View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        swipeRefreshLayout.setOnRefreshListener (new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i("REFRESH", "onRefresh called from SwipeRefreshLayout");
+
+                fetchTweets(view);
+            }
+        });
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+
     }
 
     public static Fragment newInstance(int i) {
