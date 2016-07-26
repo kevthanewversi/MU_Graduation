@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ke.co.appslab.mu_graduation.fragments.TwitterStreamFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="ke.co.appslab.mu_graduation.fragments.TwitterStreamFragment">
 
     <ProgressBar
         android:id="@+id/pbHeaderProgress"
@@ -16,4 +19,5 @@
     <ListView android:id="@android:id/list" android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+

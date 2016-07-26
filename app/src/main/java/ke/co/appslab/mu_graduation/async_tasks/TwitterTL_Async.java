@@ -42,7 +42,6 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
     final static String CONSUMER_SECRET = "R6mBaAEFOgKawumZ5OUlKBDEPVqiWop7WWsMLcTWK2RoVVfiDo";
     final static String TwitterTokenURL = "https://api.twitter.com/oauth2/token";
     final static String TwitterStreamURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=";
-    MainActivity  activity;
     View rootView;
     Context context;
     //progress bar
