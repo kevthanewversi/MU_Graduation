@@ -4,15 +4,6 @@
     android:layout_height="match_parent"
     tools:context="ke.co.appslab.mu_graduation.fragments.TwitterStreamFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView android:id="@android:id/list" android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        </LinearLayout>
-
     <ProgressBar
         android:id="@+id/pbHeaderProgress"
         android:visibility="gone"
@@ -22,6 +13,7 @@
         android:indeterminateDrawable="@drawable/progressbar" >
     </ProgressBar>
 
-
+    <ListView android:id="@android:id/list" android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

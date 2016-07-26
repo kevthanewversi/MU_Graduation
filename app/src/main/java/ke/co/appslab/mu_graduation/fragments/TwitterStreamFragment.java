@@ -35,7 +35,7 @@ import ke.co.appslab.mu_graduation.async_tasks.TwitterTL_Async;
 public class TwitterStreamFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
-    public String screeName = "kevthanewversi";
+    public String screeName = "urbanslug";
 
     /**
      * The fragment's ListView/GridView.

@@ -72,14 +72,13 @@ public class TwitterTL_Async extends AsyncTask<String,Void,String> {
         return result;
     }
 
-//
-//    @Override
-//    protected void onPreExecute() {
-//        super.onPreExecute();
-//        //show progress bar as data is being fetched
-//
-//        progressBar.setVisibility(View.VISIBLE);
-//    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        //show progress bar as data is being fetched
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
     private String fetchTwitterStream(String screenname) {
         String results = null;
