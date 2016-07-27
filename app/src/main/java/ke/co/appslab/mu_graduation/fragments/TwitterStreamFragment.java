@@ -21,6 +21,12 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
+import com.twitter.sdk.android.tweetui.UserTimeline;
+
+import io.fabric.sdk.android.Fabric;
 import ke.co.appslab.mu_graduation.R;
 import ke.co.appslab.mu_graduation.async_tasks.TwitterTL_Async;
 
@@ -37,6 +43,8 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
     private OnFragmentInteractionListener mListener;
     public String screeName = "urbanslug";
+    final static String CONSUMER_KEY = "xGRqhGEhkWnSAc3jftAUvfEcs";
+    final static String CONSUMER_SECRET = "R6mBaAEFOgKawumZ5OUlKBDEPVqiWop7WWsMLcTWK2RoVVfiDo";
 
     /**
      * The fragment's ListView/GridView.
@@ -62,7 +70,8 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(CONSUMER_KEY, CONSUMER_SECRET);
+        Fabric.with(getActivity(), new Twitter(authConfig));
         // TODO: Change Adapter to display your content
 
 
@@ -74,24 +83,24 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_twitterstream, container, false);
 
-        // Set the adapter
-//        mListView = (AbsListView) view.findViewById(android.R.id.list);
-//            ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-//
-//        // Set OnItemClickListener so we can be notified on item clicks
-//        mListView.setOnItemClickListener(this);
-        //swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+       // Set the adapter
+        mListView = (AbsListView) view.findViewById(android.R.id.list);
+            //((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+
+        // Set OnItemClickListener so we can be notified on item clicks
+        //mListView.setOnItemClickListener(this);
+        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
 
 
        // fetchTweets(view);
 
         final UserTimeline userTimeline = new UserTimeline.Builder()
-                .screenName("fabric")
+                .screenName(screeName)
                 .build();
-        final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this)
+        final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getActivity())
                 .setTimeline(userTimeline)
                 .build();
-        setListAdapter(adapter);
+        mListView.setAdapter(adapter);
 
         return view;
     }
@@ -103,7 +112,7 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
             public void onRefresh() {
                 Log.i("REFRESH", "onRefresh called from SwipeRefreshLayout");
 
-                fetchTweets(view);
+                //fetchTweets(view);
             }
         });
         swipeRefreshLayout.post(new Runnable() {
