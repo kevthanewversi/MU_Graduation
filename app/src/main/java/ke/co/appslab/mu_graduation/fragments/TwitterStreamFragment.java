@@ -22,7 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
@@ -90,37 +95,45 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         // Set OnItemClickListener so we can be notified on item clicks
         //mListView.setOnItemClickListener(this);
         swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+        
+
+              // fetchTweets(view);
+              //this fetching of tweets should be done on a different thread
+                final UserTimeline userTimeline = new UserTimeline.Builder()
+                        .screenName(screeName)
+                        .build();
+                final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getActivity())
+                        .setTimeline(userTimeline)
+                        .build();
+                mListView.setAdapter(adapter);
+
+                swipeRefreshLayout.setOnRefreshListener (new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Log.i("REFRESH", "onRefresh called from SwipeRefreshLayout");
+
+                        swipeRefreshLayout.setRefreshing(true);
+                        adapter.refresh(new Callback<TimelineResult<Tweet>>() {
+                            @Override
+                            public void success(Result<TimelineResult<Tweet>> result) {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                            @Override
+                            public void failure(TwitterException exception) {
+                                // Toast or some other action
+                            }
+                        });
+                    }
+                });
 
 
-       // fetchTweets(view);
-
-        final UserTimeline userTimeline = new UserTimeline.Builder()
-                .screenName(screeName)
-                .build();
-        final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getActivity())
-                .setTimeline(userTimeline)
-                .build();
-        mListView.setAdapter(adapter);
 
         return view;
     }
 
     public void onViewCreated(final View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        swipeRefreshLayout.setOnRefreshListener (new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.i("REFRESH", "onRefresh called from SwipeRefreshLayout");
 
-                //fetchTweets(view);
-            }
-        });
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-            }
-        });
 
     }
 
