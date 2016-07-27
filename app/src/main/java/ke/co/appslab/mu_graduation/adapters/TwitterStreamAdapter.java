@@ -54,7 +54,7 @@ public class TwitterStreamAdapter extends ArrayAdapter {
 
         viewHolder.listItemTxtView.setText(tweets.get(position).toString());
         //place picasso jar into libs folder of your project and use it for download and  set images like this
-        Picasso.with(context).load(twitterUser.getProfileImageUrl()).into(viewHolder.listItemImgView);
+        Picasso.with(context).load("https://pbs.twimg.com/profile_images/739910711820816384/eiuJ-1LU.jpg").into(viewHolder.listItemImgView);
         //viewHolder.listItemImgView.setImageResource();
         return convertView;
     }

@@ -31,9 +31,16 @@
             </intent-filter>
         </activity>
 
+        <!--maps API-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC0AlTop0nEPimS88Vwl4iDN-_7vzIde_w"/>
+
+        <!--twitter API-->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="9dfaaa7188f02a046242803d7a2af5c6c4f3e967"
+            />
 
         </application>
 

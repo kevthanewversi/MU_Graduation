@@ -80,10 +80,18 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 //
 //        // Set OnItemClickListener so we can be notified on item clicks
 //        mListView.setOnItemClickListener(this);
-        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+        //swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
 
 
-        fetchTweets(view);
+       // fetchTweets(view);
+
+        final UserTimeline userTimeline = new UserTimeline.Builder()
+                .screenName("fabric")
+                .build();
+        final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this)
+                .setTimeline(userTimeline)
+                .build();
+        setListAdapter(adapter);
 
         return view;
     }
