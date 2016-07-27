@@ -12,16 +12,15 @@ import java.util.List;
 import ke.co.appslab.mu_graduation.R;
 
 /**
- * Created by root on 1/20/16.
+ * Created by root on 7/27/16.
  */
-public class ScheduleFragmentAdapter extends RecyclerView.Adapter<ScheduleFragmentAdapter.ContactViewHolder> {
-
+public class SpeakersFragmentAdapter extends RecyclerView.Adapter<SpeakersFragmentAdapter.ContactViewHolder>   {
     private List<ContactInfo> contactList;
     private Context mContext;
 
 
     //pass the contact array into the constructor
-    public ScheduleFragmentAdapter(List<ContactInfo> contactList) {
+    public SpeakersFragmentAdapter(List<ContactInfo> contactList) {
         this.contactList = contactList;
     }
 
@@ -67,3 +66,4 @@ public class ScheduleFragmentAdapter extends RecyclerView.Adapter<ScheduleFragme
     }
 
 }
+

@@ -92,8 +92,8 @@
     <orderEntry type="library" exported="" name="kenburnsview-1.0.6" level="project" />
     <orderEntry type="library" exported="" name="play-services-base-8.3.0" level="project" />
     <orderEntry type="library" exported="" name="digits-1.11.1" level="project" />
-    <orderEntry type="library" exported="" name="retrofit-mock-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.8.0" level="project" />
+    <orderEntry type="library" exported="" name="retrofit-mock-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="answers-shim-0.0.3" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
