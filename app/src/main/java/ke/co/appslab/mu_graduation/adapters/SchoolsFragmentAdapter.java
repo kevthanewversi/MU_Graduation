@@ -31,7 +31,7 @@ public class SchoolsFragmentAdapter  extends RecyclerView.Adapter<SchoolsFragmen
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.schedule_recyclerview, viewGroup, false);
+                inflate(R.layout.schools_recyclerview, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }

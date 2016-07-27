@@ -30,7 +30,7 @@ public class SpeakersFragmentAdapter extends RecyclerView.Adapter<SpeakersFragme
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.schedule_recyclerview, viewGroup, false);
+                inflate(R.layout.speakers_recyclerview, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }
