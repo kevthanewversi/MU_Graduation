@@ -72,7 +72,7 @@ public class ScheduleFragment extends ScrollTabHolderFragment {
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
         RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.cardList);
 
-        contact = ContactInfo.createContactsList(20);
+        contact = ContactInfo.createContactsList(3);
         scheduleFragmentAdapter = new ScheduleFragmentAdapter(contact);
         recyclerView.setAdapter(scheduleFragmentAdapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));

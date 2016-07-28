@@ -15,6 +15,8 @@ import android.widget.TextView;
 import ke.co.appslab.mu_graduation.R;
 
 import ke.co.appslab.mu_graduation.ScrollTabHolderFragment;
+import ke.co.appslab.mu_graduation.adapters.ContactInfo;
+import ke.co.appslab.mu_graduation.adapters.SchoolsFragmentAdapter;
 
 /**
  * A fragment representing a list of Items.
@@ -44,6 +46,7 @@ public class SchoolsFragment extends ScrollTabHolderFragment implements AbsListV
      * Views.
      */
     private ListAdapter mAdapter;
+    SchoolsFragmentAdapter schoolsFragmentAdapter;
 
     // TODO: Rename and change types of parameters
     public static Fragment newInstance(int i) {
@@ -71,16 +74,17 @@ public class SchoolsFragment extends ScrollTabHolderFragment implements AbsListV
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schools, container, false);
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_schools, container, false);
+        RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.cardList);
 
-        // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        contact = ContactInfo.createContactsList(3);
+        schoolsFragmentAdapter = new SchoolsFragmentAdapter(contact);
+        recyclerView.setAdapter(schoolsFragmentAdapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
-        // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
-
-        return view;
+        return  rootView;
     }
 
     @Override
