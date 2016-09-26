@@ -3,6 +3,8 @@ package ke.co.appslab.mu_graduation.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import ke.co.appslab.mu_graduation.R;
 
@@ -35,7 +39,7 @@ public class AwardsFragment extends ScrollTabHolderFragment implements AbsListVi
     private int mPosition;
 
     private OnFragmentInteractionListener mListener;
-
+    ArrayList<ContactInfo> contact;
     /**
      * The fragment's ListView/GridView.
      */

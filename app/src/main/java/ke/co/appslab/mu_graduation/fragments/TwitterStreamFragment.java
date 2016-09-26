@@ -77,7 +77,6 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
 
         TwitterAuthConfig authConfig = new TwitterAuthConfig(CONSUMER_KEY, CONSUMER_SECRET);
         Fabric.with(getActivity(), new Twitter(authConfig));
-        swipeRefreshLayout.setRefreshing(true);
         // TODO: Change Adapter to display your content
 
 
@@ -96,6 +95,7 @@ public class TwitterStreamFragment extends Fragment implements AbsListView.OnIte
         // Set OnItemClickListener so we can be notified on item clicks
         //mListView.setOnItemClickListener(this);
         swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setRefreshing(true);
 
 
               // fetchTweets(view);
